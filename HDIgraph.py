@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 import requests
 import csv
 
@@ -33,4 +33,3 @@ for row in rows:
 	csvWrite.writerow([hdi_2015])
 
 csvFile.close()
-

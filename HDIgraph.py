@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from matplotlib import pyplot as plt
+import numpy as np
 import requests
 import csv
 
@@ -13,24 +14,34 @@ urlContent = BeautifulSoup(url.content, "lxml")
 
 csvFile = open('HDI.csv', 'w')
 csvWrite = csv.writer(csvFile)
-csvWrite.writerow(['List_of_Asian_and_Oceania_countries_by_Human_Development_Index_2015'])
+# csvWrite.writerow(['International Rank', 'Regional Rank', 'Countries', 'HDI2015', 'HDI2014', 'Change'])
 
 hdi_table = urlContent.find('table', {'class':'wikitable'})
-nation_names = hdi_table.find_all('a')
 rows = hdi_table.find_all('tr')
-
-# for nations in nation_names:
-# 	nations = nations.get('title')
-# 	print(nations)
-# 	print()
-# 	csvWrite.writerow([nations])
 
 for row in rows:
 	hdi_2015 = row.find_all('td')
 	hdi_2015 = [x.text.strip() for x in hdi_2015]
 	print(hdi_2015)
 	print()
-	csvWrite.writerow([hdi_2015])
+	csvWrite.writerows([hdi_2015])
 
 csvFile.close()
 
+x = []
+y = []
+
+with open('HDI.csv', 'r') as input_file:
+	plots = csv.reader(input_file, skipinitialspace=False, delimiter=' ')
+	for cols in plots:
+			x.append(int(cols[0]))
+			y.append(int(cols[1]))
+
+
+
+plt.plot(x, y, label='Loaded from file!')
+plt.xlabel('x_axis')
+plt.ylabel('y_axis')
+plt.title('Asian_and_Oceania_countries_by_HDI_2015')
+plt.legend()
+plt.show()

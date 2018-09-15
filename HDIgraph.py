@@ -1,6 +1,10 @@
 from bs4 import BeautifulSoup
+<<<<<<< HEAD
 from matplotlib import pyplot as plt
 import numpy as np
+=======
+# from matplotlib import pyplot as plt
+>>>>>>> b882e44269cc11c2800ce363eceb5b9b0b1d08a2
 import requests
 import csv
 
@@ -27,6 +31,7 @@ for row in rows:
 	csvWrite.writerows([hdi_2015])
 
 csvFile.close()
+<<<<<<< HEAD
 
 x = []
 y = []
@@ -45,3 +50,5 @@ plt.ylabel('y_axis')
 plt.title('Asian_and_Oceania_countries_by_HDI_2015')
 plt.legend()
 plt.show()
+=======
+>>>>>>> b882e44269cc11c2800ce363eceb5b9b0b1d08a2
